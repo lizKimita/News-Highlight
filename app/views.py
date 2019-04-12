@@ -6,8 +6,8 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
-
-    return render_template('index.html')
+    title = 'Home - Be on the know by catching up with the latest new here!'
+    return render_template('index.html', title = title)
 
 @app.route('/source/<int:source_id>')
 def source(source_id):
