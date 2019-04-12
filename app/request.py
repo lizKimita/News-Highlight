@@ -59,22 +59,16 @@ def get_articles(source_id):
     '''
     Function that gets the articles data for each source id
     '''
-    get_source_details_url = base_url.format(source_id,api_key)
+    get_articles_url = everything_url.format(source_id,api_key)
 
-    with urllib.request.urlopen(get_source_details_url) as url:
+    with urllib.request.urlopen(get_articles_url) as url:
         articles_details_data = url.read()
         articles_details_response = json.loads(articles_details_data)
 
         articles_object = None
 
-        if articles_details_response:
-            id = movie_details_response.get('id')
-            title = movie_details_response.get('original_title')
-            overview = movie_details_response.get('overview')
-            poster = movie_details_response.get('poster_path')
-            vote_average = movie_details_response.get('vote_average')
-            vote_count = movie_details_response.get('vote_count')
+        if articles_details_response['articles']:
+            articles_details_list = articles_details_response['articles']
+            article_details = process_results(articles_details_list)
 
-            movie_object = Movie(id,title,overview,poster,vote_average,vote_count)
-
-    return movie_object
+    return article_details
