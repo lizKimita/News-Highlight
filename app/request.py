@@ -72,3 +72,32 @@ def get_articles(source_id):
             article_details = process_results(articles_details_list)
 
     return article_details
+
+def process_articles(articles_list):
+    '''
+    Function  that processes the articles results and transform them to a list of Objects
+
+    Args:
+        articles_list: A list of dictionaries that contain the articles details
+
+    Returns :
+        articles_results: A list of articles objects
+    '''
+    articles_results= []
+    
+    for article_item in articles_list:
+        author = article_item.get('author')
+        title = article_item.get('title')
+        description = article_item.get('description')
+        url = article_item.get('url')
+        urlToImage = article_item.get('urlToImage')
+        publishedAt = article_item.get('publishedAt')
+
+        #publishedAt = datetime(year=int(date_published[0:4]),month=int(date_published[5:7]),day=int(date_published[8:10]),hour=int(date_published[11:13]),minute=int(date_published[14:16]))
+
+
+        if urlToImage:
+            article_object = Article(author,title,description,url,urlToImage,publishedAt)
+            articles_results.append(article_object)
+        
+    return articles_results
