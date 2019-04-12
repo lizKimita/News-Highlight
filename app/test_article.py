@@ -1,5 +1,5 @@
 import unittest
-from models import article
+from app.models import article
 Article = article.Article
 
 class ArticleTest(unittest.TestCase):
