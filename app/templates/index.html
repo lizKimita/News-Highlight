@@ -10,7 +10,16 @@
 
 {% block content%}
 
-    <h3> General News </h3>
+<div class="container">
+        <form>
+            <input type="text" name="source_query" placeholder="Search for a News Source" class="form-control">
+            <br>
+            <input type="submit"  value="Submit" class="btn btn-warning">
+        </form>
+    
+</div>
+
+    <h3> General News </h3> 
     <ul>
         {{ macro.displaySourceList(general)}}
     </ul>

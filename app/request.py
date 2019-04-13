@@ -129,3 +129,18 @@ def process_articles(articles_list):
             articles_results.append(articles_object)
         
     return articles_results
+
+def search_source(source_name):
+    search_source_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'.format(api_key,source_name)  
+    with urllib.request.urlopen(search_source_url) as url:
+        search_source_data = url.read()
+        search_source_response = json.loads(search_source_data)
+
+        search_source_results = None
+
+        if search_source_response['sources']:
+            search_source_list = search_source_response['sources']
+            search_source_results = process_results(search_source_list)
+
+
+    return search_source_results
