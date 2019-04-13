@@ -8,7 +8,7 @@ def index():
     View root page function that returns the index page and its data
     '''
 
-     #Getting General news Sources
+     #Getting news Sources
     general_sources = get_sources('general')
     entertainment_sources = get_sources('entertainment')
     business_sources = get_sources('business')
@@ -22,12 +22,22 @@ def index():
 
    
 
-@app.route('/articles/<int:source_id>')
-def source(source_id):
+@app.route('/templates/articles/<int:id>')
+def articles(id):
     '''
     View Source page function that returns news source details and its data
     '''
 
-    articles = get_articles(source_id)
-    title = f'{source_id}|All Articles'
-    return render_template('articles.html', title = title, id = source_id, article = articles)
+    source = get_articles(id)
+    title = f'{source.title}'
+    return render_template('articles.html', title = title, source = source)
+
+# @app.route('/source/<int:id>')
+# def source(id):
+#     '''
+#     View Source page function that returns news source details and its data
+#     '''
+
+#     source = get_source(id)
+#     title = f'{source.title}'
+#     return render_template('source.html', title = title, source = source)
