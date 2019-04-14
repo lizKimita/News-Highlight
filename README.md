@@ -18,7 +18,7 @@ The News-Highlight application is meant to assist users with busy schedules to c
 * Ensure you have Installed Python3.6
 * Clone the News-Highlight Repository
 * Navigate to the start.sh file and edit the api key by using your api key
-* Run chmod a+x start.py
+* Run chmod a+x start.sh
 * Run ./start.py to open the app
 
 ## Known Bugs
