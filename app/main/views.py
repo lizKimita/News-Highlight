@@ -23,7 +23,7 @@ def index():
     search_source = request.args.get('source_query')
 
     if search_source:
-        return redirect(url_for('main.search',source_name=search_source))
+        return redirect(url_for('.search',source_name=search_source))
     else:
         return render_template('index.html', title = title, general = general_sources,entertainment = entertainment_sources, business = business_sources, sports = sports_sources, technology = technology_sources, health = health_sources, science = science_sources)
 
@@ -57,6 +57,6 @@ def search(source_name):
     '''
     source_name_list = source_name.split(" ")
     source_name_format = "+".join(source_name_list)
-    searched_source = search_source(source_name_format)
+    searched_sources = search_source(source_name_format)
     title = f'search results for {source_name}'
-    return render_template('search.html',sources = searched_source)
+    return render_template('search.html',sources = searched_sources)

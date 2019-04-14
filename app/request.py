@@ -139,12 +139,12 @@ def search_source(source_name):
     '''
     Function that looks for articles based on their sources
     '''
-    search_source_url = search_url.format(api_key,source_name)  
+    search_source_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'.format(api_key,source_name)  
     with urllib.request.urlopen(search_source_url) as url:
         search_source_data = url.read()
         search_source_response = json.loads(search_source_data)
 
-        search_source_results = []
+        search_source_results=[]
 
         if search_source_response['sources']:
             search_source_list = search_source_response['sources']
