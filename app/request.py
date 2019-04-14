@@ -1,16 +1,21 @@
-from app import app
 import urllib.request,json
-from .models import source,article
+from .models import Source,Article
 
-Source = source.Source
-Article = article.Article
 
 # Getting api key
-api_key = app.config['NEWS_API_KEY']
+api_key = None
 
 #Getting the news base url
-base_url = app.config["NEWS_API_BASE_URL"]
-articles_url = app.config["ARTICLES_BASE_URL"]
+base_url = None
+articles_url = None
+search_url = None
+
+def configure_request(app):
+    global api_key,base_url, articles_url, search_url
+    api_key = app.config['NEWS_API_KEY']
+    base_url = app.config["NEWS_API_BASE_URL"]
+    articles_url = app.config["ARTICLES_BASE_URL"]
+    search_url = app.config["SEARCH_URL"]
 
 
 def get_sources(category):
@@ -115,7 +120,7 @@ def process_articles(articles_list):
     '''
     articles_results= []
     
-    for articles_item in articles_list:
+    for article_item in articles_list:
         id = article_item.get('id')
         author = article_item.get('author')
         title = article_item.get('title')
@@ -131,12 +136,15 @@ def process_articles(articles_list):
     return articles_results
 
 def search_source(source_name):
-    search_source_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'.format(api_key,source_name)  
+    '''
+    Function that looks for articles based on their sources
+    '''
+    search_source_url = search_url.format(api_key,source_name)  
     with urllib.request.urlopen(search_source_url) as url:
         search_source_data = url.read()
         search_source_response = json.loads(search_source_data)
 
-        search_source_results = None
+        search_source_results = []
 
         if search_source_response['sources']:
             search_source_list = search_source_response['sources']

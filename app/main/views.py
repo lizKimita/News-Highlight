@@ -1,8 +1,10 @@
 from flask import render_template,request,redirect,url_for
-from app import app
-from .request import get_sources, get_articles, search_source
+from . import main
+from ..request import get_sources, get_articles, search_source
+from ..models import Source, Article
 
-@app.route('/')
+
+@main.route('/')
 def index():
     '''
     View root page function that returns the index page and its data
@@ -21,13 +23,13 @@ def index():
     search_source = request.args.get('source_query')
 
     if search_source:
-        return redirect(url_for('search',source_name=search_source))
+        return redirect(url_for('main.search',source_name=search_source))
     else:
         return render_template('index.html', title = title, general = general_sources,entertainment = entertainment_sources, business = business_sources, sports = sports_sources, technology = technology_sources, health = health_sources, science = science_sources)
 
    
 
-@app.route('/templates/articles/<int:id>')
+@main.route('/articles/<int:id>')
 def articles(id):
     '''
     View Source page function that returns news source details and its data
@@ -48,7 +50,7 @@ def articles(id):
 #     return render_template('source.html', title = title, source = source)
 
 
-@app.route('/search/<source_name>')
+@main.route('/search/<source_name>')
 def search(source_name):
     '''
     View function to display the search results

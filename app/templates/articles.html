@@ -1,5 +1,5 @@
 {% extends 'base.html'%}
-{% import 'macros.html' as macro%}
+<!-- {% import 'macros.html' as macro%} -->
 
 <!-- Content block -->
 {% block content %}
@@ -13,16 +13,16 @@
         <div class="row">
             {% for article in source %}
             <div class="col-md-3">
-                <a href={{source.url}} target="_blank">
-                    <img src={{source.urlToImage}} alt="">
+                <a href={{article.url}} target="_blank">
+                    <img src={{article.urlToImage}} alt="">
                 </a>
                 <div>
-                    <h4 class="text-bold"> {{source.title}} </h4>
-                    <p class="small">- {{source.author}} </p>
-                    <p class="small">Posted on {{source.publishedAt}}</p>
+                    <h4 class="text-bold"> {{article.title}} </h4>
+                    <p class="small">- {{article.author}} </p>
+                    <p class="small">Posted on {{article.publishedAt}}</p>
                     <hr>
                     <p> {{article.description}}
-                        <a href={{source.url}} target="_blank">Read Full Article</a>
+                        <a href={{article.url}} target="_blank">Read Full Article</a>
                     </p>
                 </div>
             </div>
