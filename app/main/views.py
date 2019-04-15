@@ -37,7 +37,7 @@ def articles(id):
 
     source = get_articles(id)
     # title = f'{source.title}'
-    return render_template('articles.html', source = source)
+    return render_template('articles.html',id = id, source = source)
 
 # @app.route('/source/<int:id>')
 # def source(id):

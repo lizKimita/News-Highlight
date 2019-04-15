@@ -2,22 +2,26 @@
 
     {% for source in source_list %}
 
-    <div class="col-md-4 source-card">
-
-            <div class = "row">
+    <div class="col-md-4 border border-warning">
+        <div class = "card border border-primary">
+            <div class = "card-header">
                 <div class="col-md-4">
                     <p >{{ source.name}}</p> 
                 </div>
+            </div>
+            <div class="card-body">   
                 <div class = "col-md-8">
                     <p> {{source.description|truncate(100)}} </p>
                     <a href="/articles/{{source.id}}"> View Articles</a>
                 </div>       
             </div> 
+        </div>
     </div>
 
         
     {% endfor %}
 {% endmacro %}
+
 
 
 

@@ -7,7 +7,7 @@ api_key = '41310f72641c4a48919cecb38b8f2a23'
 
 #Getting the news base url
 base_url = None
-articles_url = 'https://newsapi.org/v2/everything?sources={}&apiKey={}'
+articles_url = None
 search_url = None
 
 def configure_request(app):
@@ -16,8 +16,6 @@ def configure_request(app):
     base_url = app.config["NEWS_API_BASE_URL"]
     articles_url = app.config["ARTICLES_BASE_URL"]
     search_url = app.config["SEARCH_URL"]
-
-print(articles_url)
 
 
 def get_sources(category):
@@ -67,30 +65,6 @@ def process_results(source_list):
     return source_results
 
 
-
-# def get_source(id):
-#     get_source_details_url = articles_url.format(id,api_key)
-
-#     with urllib.request.urlopen(get_source_details_url) as url:
-#         source_details_data = url.read()
-#         source_details_response = json.loads(source_details_data)
-
-#         source_object = None
-
-#         if source_details_response:
-#             id = source_details_response.get('id')
-#             author = source_details_response.get('author')
-#             title = source_details_response.get('title')
-#             description = source_details_response.get('description')
-#             url = source_details_response.get('url')
-#             urlToImage = source_details_response.get('urlToImage')
-#             publishedAt = source_details_response.get('publishedAt')
-
-#             source_object = Source (id,author,title,description,url,urlToImage,publishedAt)
-
-#     return source_object
-
-
 def get_articles(id):
     '''
     Function that gets the articles data for each id
@@ -123,18 +97,18 @@ def process_articles(articles_list):
     articles_results= []
     
     for article_item in articles_list:
-        id = article_item.get('id')
         author = article_item.get('author')
         title = article_item.get('title')
         description = article_item.get('description')
-        url = article_item.get('url')
         urlToImage = article_item.get('urlToImage')
         publishedAt = article_item.get('publishedAt')
+        url = article_item.get('url')
+
+        author, title, description, urlToImage, publishedAt,url
 
         if urlToImage:
-            articles_object = Article(id,author,title,description,url,urlToImage,publishedAt)
-            articles_results.append(articles_object)
-    print(articles_results)    
+            articles_object = Article(author, title, description, urlToImage, publishedAt,url)
+            articles_results.append(articles_object)   
     return articles_results
 
 def search_source(source_name):
