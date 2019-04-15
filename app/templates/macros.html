@@ -2,15 +2,15 @@
 
     {% for source in source_list %}
 
-    <div class="col-md-4 border border-warning">
-        <div class = "card border border-primary">
-            <div class = "card-header">
-                <div class="col-md-4">
-                    <p >{{ source.name}}</p> 
+    <div class="col-md-4">
+        <div class ="card-styles" style="height:10em">
+            <div class ="col-md-4">
+                <div class="card-header">
+                    <p><strong>{{ source.name}}</strong> </p> 
                 </div>
             </div>
-            <div class="card-body">   
-                <div class = "col-md-8">
+            <div class="col-md-8">   
+                <div class ="card-body">
                     <p> {{source.description|truncate(100)}} </p>
                     <a href="/articles/{{source.id}}"> View Articles</a>
                 </div>       

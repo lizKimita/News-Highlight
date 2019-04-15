@@ -36,18 +36,7 @@ def articles(id):
     '''
 
     source = get_articles(id)
-    # title = f'{source.title}'
     return render_template('articles.html',id = id, source = source)
-
-# @app.route('/source/<int:id>')
-# def source(id):
-#     '''
-#     View Source page function that returns news source details and its data
-#     '''
-
-#     source = get_source(id)
-#     title = f'{source.title}'
-#     return render_template('source.html', title = title, source = source)
 
 
 @main.route('/search/<source_name>')
