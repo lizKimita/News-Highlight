@@ -29,15 +29,15 @@ def index():
 
    
 
-@main.route('/articles/<int:id>')
+@main.route('/articles/<id>')
 def articles(id):
     '''
     View Source page function that returns news source details and its data
     '''
 
     source = get_articles(id)
-    title = f'{source.title}'
-    return render_template('articles.html', title = title, source = source)
+    # title = f'{source.title}'
+    return render_template('articles.html', source = source)
 
 # @app.route('/source/<int:id>')
 # def source(id):

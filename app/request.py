@@ -3,11 +3,11 @@ from .models import Source,Article
 
 
 # Getting api key
-api_key = None
+api_key = '41310f72641c4a48919cecb38b8f2a23'
 
 #Getting the news base url
 base_url = None
-articles_url = None
+articles_url = 'https://newsapi.org/v2/everything?sources={}&apiKey={}'
 search_url = None
 
 def configure_request(app):
@@ -16,6 +16,8 @@ def configure_request(app):
     base_url = app.config["NEWS_API_BASE_URL"]
     articles_url = app.config["ARTICLES_BASE_URL"]
     search_url = app.config["SEARCH_URL"]
+
+print(articles_url)
 
 
 def get_sources(category):
@@ -130,9 +132,9 @@ def process_articles(articles_list):
         publishedAt = article_item.get('publishedAt')
 
         if urlToImage:
-            articles_object = Articles (id,author,title,description,url,urlToImage,publishedAt)
+            articles_object = Article(id,author,title,description,url,urlToImage,publishedAt)
             articles_results.append(articles_object)
-        
+    print(articles_results)    
     return articles_results
 
 def search_source(source_name):
