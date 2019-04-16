@@ -10,7 +10,7 @@ The News-Highlight application is meant to assist users with busy schedules to c
 ## User Requirements
 * User needs an internet connection to log in 
 * They are taken to the home page that has a list of news sources
-* They can select a news source or search for a preferred source in the search bar
+* They can select a news source to view articles from
 * Users are then taken to a page with a list of articles from the selected source
 * Clicking on the read more link directs users to the full article.
 
